@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FOOTBALL PREDICTION WEBSITE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css\web.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+  <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
+
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+        </style>
+</head>
+
+<body style=" position: relative; min-height: 100%; top: 0px">
+
+  <nav class="navbar navbar-expand-sm bg-light justify-content-center">
+    <img class="rounded-circle" src="Champions-League-logo-880x660.png" alt="logo" width="110" ><h2 class="text-center" id="main_heading">FOOTBALL PREDICTION</h2>
+
+</nav>
+<div class="row">
+  <div class="col"><a href="" align="center">Player Stats</a></div>
+  <div class="col"><a href="#" align="center">Top Scorers</a></div>
+  <div class="col"><a href="" align="center">Clean Sheets</a></div>
+  <div class="col"><a href="mostassists.html" align="center">Most Assists</a></div>
+  <div class="col"><a href="about_page.html" align="center" >About</a></div>
+</div>
+<br>
+</div>
+<script src="d3.min.js?v=3.2.8"></script>
+<!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+
+<script type="text/javascript"charset="utf-8">
+  d3.text("top_scorers.csv", function(data) {
+      var parsedCSV = d3.csv.parseRows(data);
+
+      var container = d3.select("body")
+          .append("table")
+
+          .selectAll("tr")
+              .data(parsedCSV).enter()
+              .append("tr")
+
+          .selectAll("td")
+              .data(function(d) { return d; }).enter()
+              .append("td")
+              .text(function(d) { return d; });
+  });
+</script>
+
+
+
+
+    </body>
+</html>
