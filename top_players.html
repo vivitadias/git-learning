@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FOOTBALL PREDICTION WEBSITE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css\web.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style=" position: relative; min-height: 100%; top: 0px">
+  <nav class="navbar navbar-expand-sm bg-light justify-content-center">
+    <img class="rounded-circle" src="Champions-League-logo-880x660.png" alt="logo" width="110" ><h2 class="text-center" id="main_heading">FOOTBALL PREDICTION</h2>
+
+</nav>
+<div class="row">
+  <div class="col"><a href="" align="center">Player Stats</a></div>
+  <div class="col"><a href="#" align="center">Top Scorers</a></div>
+  <div class="col"><a href="" align="center">Clean Sheets</a></div>
+  <div class="col"><a href="mostassists.html" align="center">Most Assists</a></div>
+  <div class="col"><a href="about_page.html" align="center" >About</a></div>
+</div>
+<br>
+
+
+
+</div>
+
+<div class="container-fluid" align="center" id="top-scorers-header" >TOP SCORERS OF CHAMPIONS LEAGUE</DIV>
+  <input type="file" id="fileUpload" value="topscorers.csv" />
+<input type="button" id="upload" value="Show" onclick="Upload()" />
+<div id="dvCSV">
+
+  <script type="text/javascript">
+      function Upload() {
+          var fileUpload = document.getElementById("fileUpload");
+          var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+          if (regex.test(fileUpload.value.toLowerCase())) {
+              if (typeof (FileReader) != "undefined") {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      var table = document.createElement("table");
+                      var rows = e.target.result.split("\n");
+                      for (var i = 0; i < rows.length; i++) {
+                          var cells = rows[i].split(",");
+                          if (cells.length > 1) {
+                              var row = table.insertRow(-1);
+                              for (var j = 0; j < cells.length; j++) {
+                                  var cell = row.insertCell(-1);
+                                  cell.innerHTML = cells[j];
+                              }
+                          }
+                      }
+                      var dvCSV = document.getElementById("dvCSV");
+                      dvCSV.innerHTML = "";
+                      dvCSV.appendChild(table);
+                  }
+                  reader.readAsText(fileUpload.files[0]);
+              } else {
+                  alert("This browser does not support HTML5.");
+              }
+          } else {
+              alert("Please upload a valid CSV file.");
+          }
+      }
+  </script>
+
+
+
+
+</body>
+</html>
